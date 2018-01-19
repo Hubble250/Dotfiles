@@ -20,3 +20,5 @@ BoldWhite=197,200,198
 
 BoldAsFont=-1
 BellType=0
+CursorType=block
+FontHeight=10
