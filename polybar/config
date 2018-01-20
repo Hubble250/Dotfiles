@@ -1,6 +1,7 @@
 [bar/bar]
 
-font-0 = "Overpass Mono:pixelsize=18;4"
+font-0 = "Overpass Regular:pixelsize=18;4"
+font-1 = FontAwesome:size=18;4
 
 monitor = "eDP-1"
 
@@ -28,7 +29,7 @@ module-margin = 0
 
 modules-left = i3 
 modules-center = date
-modules-right = cpu memory
+modules-right = volume powermenu 
 
 [module/i3]
 strip-wsnumbers = true
@@ -76,3 +77,76 @@ type = internal/xwindow
 format-foreground = #f0c674
 format-padding = 1
 label-maxlen = 50
+
+[module/battery-combined-shell]
+type = custom/script
+exec = ~/polybar-scripts/battery-combined-shell.sh
+interval = 10
+
+[module/bluetooth]
+type = custom/script
+exec = ~/dotfiles/polybar/bluetooth.sh
+interval = 10
+
+[module/system-cpu-loadavg]
+type = custom/script
+exec = ~/polybar-scripts/system-cpu-loadavg/system-cpu-loadavg.sh
+interval = 5
+
+[module/powermenu]
+type = custom/menu
+
+label-open =   
+;label-open-background = #dd0000
+;label-open-foreground = #fff
+label-close = cancel
+;label-close-background = #dd0000
+;label-close-foreground = #fff
+label-open-padding = 4 
+label-close-padding = 3 
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-0-padding = 3
+menu-0-1-padding = 3
+
+menu-1-0 = reboot?  
+menu-1-0-exec = sudo reboot
+menu-1-0-padding = 3
+
+menu-2-0 = power off?  
+menu-2-0-exec = sudo poweroff
+menu-2-0-padding = 3
+
+[module/volume]
+type = internal/volume
+
+; Soundcard to be used
+; Usually in the format hw:#
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+
+; Name of the master mixer
+; Default: Master
+master-mixer = Master
+
+; Optionally define speaker and headphone mixers
+; Use the following command to list available mixer controls:
+; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
+; Default: none
+speaker-mixer = Speaker
+; Default: none
+headphone-mixer = Headphone
+
+; NOTE: This is required if headphone_mixer is defined
+; Use the following command to list available device controls
+; $ amixer controls | sed -r "/CARD/\!d; s/.*=([0-9]+).*name='([^']+)'.*/printf '%3.0f: %s\n' '\1' '\2'/e" | sort
+; Default: none
+headphone-id = 9
+
+; Use volume mapping (similar to amixer -M and alsamixer), where the increase in volume is linear to the ear
+; Default: false
+mapped = true
