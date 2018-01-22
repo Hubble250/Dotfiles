@@ -20,6 +20,13 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'itchyny/lightline.vim'
+Plugin 'tmhedberg/SimpylFold'
+
+" Python Plugins
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
+" Ruby Plugins
+Plugin 'ngmy/vim-rubocop'
 
 let python_highlight_all=1
 syntax on
@@ -42,6 +49,10 @@ if !has('gui_running')
 endif
  
 inoremap jj <ESC>
+
+
+
+set relativenumber
 
 
 
